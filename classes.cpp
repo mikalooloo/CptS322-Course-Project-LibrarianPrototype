@@ -115,7 +115,17 @@ public:
 
     // Functions
    void editUser() { 
-
+       new_name = "";
+       new_user = "";
+       cout << "\n Name: " << name;
+       cout << "\n Enter a new name: ";
+       cin >> new_name;
+       setName(new_name);
+       cout << "\n Updated new name: " << name;
+       cout << "\n Username: "<< username;
+       cin >> new_user;
+       setUsername(new_user);
+       cout << "\n Updated new username: " << username;
    }
    
    void addItemToCart() {
