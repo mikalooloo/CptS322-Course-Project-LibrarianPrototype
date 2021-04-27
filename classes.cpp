@@ -29,7 +29,11 @@ public:
     }
 
     // Functions
-    void displayBook();
+    void displayBook(){
+        cout<<"\n Book ISBN: " << isbn;
+        cout<<"\nBook Name: " << name;
+        cout<<"\nAuthor:" << author;
+    }
     bool checkoutBook() {
         checkedOut = true;
     }
