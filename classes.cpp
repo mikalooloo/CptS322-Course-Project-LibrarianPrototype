@@ -128,14 +128,14 @@ public:
        cout << "\n Updated new username: " << username;
    }
    
-   void addItemToCart() {
-
+   void addItemToCart(std::string i) {
+       cart.push_back(i); // adds item i to cart
    }
 
    void checkout() {
-
+       booksCheckedOut.splice(cart.end(), cart) // I think this will transfer all items from cart into booksCheckedOut
    }
-   
+
    std::string searchInventory() {
 
    }
