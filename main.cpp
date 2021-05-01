@@ -4,20 +4,22 @@
 int main(void)
 {
 	int choice;
-	std::cout << "Library Assistant Main Menu" << std::endl;
-	std::cout << "Please pick an option below" << std::endl;
-	std::cin >> choice;
+	
 	do 
 	{
+		std::cout << "Library Assistant Main Menu" << std::endl;
+		std::cout << "Please pick an option below" << std::endl;
+		std::cin >> choice;
+
 		switch (choice) {
 			case 1:
 				// View Book Inventory
 				break;
 			case 2:
-				// Check In Book
+				// Check Out Cart
 				break;
 			case 3:
-				// Check Out Book
+				// Check In Book(s)
 				break;
 			case 4:
 				// Check Balance
@@ -28,8 +30,11 @@ int main(void)
 			case 6:
 				//Exit
 				break;
+			default:
+				std::cout << std::endl << choice << " is not a valid input. Please try again!" << std::endl << std::endl;
+				break;
 		}
-	} while(choice >= 0 || choice <= 6);
+	} while(choice != 6);
 
 
 
