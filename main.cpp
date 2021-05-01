@@ -1,11 +1,10 @@
 //main.cpp for Library
-#include <iostream>
 #include "classes.hpp"
 
 int main(void)
 {
 	int choice;
-	User currentUser();
+	User currentUser;
 	
 	do 
 	{
@@ -28,6 +27,14 @@ int main(void)
 				break;
 			case 5:
 				// Register/Edit User
+				if (!currentUser.getRegistered()) // user is not registered
+				{
+					// register user
+				}
+				else
+				{
+					// edit user
+				}
 				break;
 			case 6:
 				//Exit

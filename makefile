@@ -1,7 +1,7 @@
 CC=g++
 CFLAGS=-g -Wall -std=c++11
 DEPS = classes.hpp
-OBJ = main.cpp classes.cpp functions.cpp
+OBJ = main.cpp functions.cpp
 
 %.o: %.c $(DEPS)
 	$(CC) -c -o $@ $< $(CFLAGS)
