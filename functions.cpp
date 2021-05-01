@@ -1,19 +1,21 @@
+#include "classes.cpp"
+
 //Admin functions
 void getUser();
 void getBooks();
 
 //User functions
-String getName();
-setName();
+std::string getName();
+void setName();
 void isRegistered();
 bool editUser();
-String searchInventory();
+std::string searchInventory();
 void addItemToCart();
 bool checkout();
 
 //Book functions
 void showBooks();
-Book getBooks();
+//Book getBooks();
 bool checkinBook();
 bool checkoutBook();
 
@@ -21,9 +23,9 @@ int getWaitlistNum();
 
 
 //Order functions
-totalItems();
-printDetails();
-cancel();
+std::list<std::string> totalItems();
+void printDetails();
+bool cancel();
 
 //Payment functions
 

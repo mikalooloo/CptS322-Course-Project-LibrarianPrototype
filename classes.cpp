@@ -1,4 +1,5 @@
 #include <iostream>
+#include <list>
 
 //Book Class
 class Book
@@ -30,15 +31,19 @@ public:
 
     // Functions
     void displayBook(){
-        cout<<"\n Book ISBN: " << isbn;
-        cout<<"\nBook Name: " << name;
-        cout<<"\nAuthor:" << author;
+        std::cout<<"\n Book ISBN: " << isbn;
+        std::cout<<"\nBook Name: " << name;
+        std::cout<<"\nAuthor:" << author;
     }
     bool checkoutBook() {
         checkedOut = true;
+        if (checkedOut) return true;
+        else return false;
     }
     bool checkinBook() {
         checkedOut = false;
+        if (!checkedOut) return true;
+        else return false;
     }
 };
 
@@ -87,14 +92,14 @@ public:
     void setUsername(std::string u) {
         username = u;
     }
-    void setPassword(std::stringn p) {
+    void setPassword(std::string p) {
         password = p;
     }
     void setFees(float f) {
         feesDue = f;
     }
     // Getters
-    bool isRegistered(void) {
+    bool getRegistered(void) {
         return isRegistered;
     }
     std::string getName(void) {
@@ -115,17 +120,21 @@ public:
 
     // Functions
    void editUser() { 
-       new_name = "";
-       new_user = "";
-       cout << "\n Name: " << name;
-       cout << "\n Enter a new name: ";
-       cin >> new_name;
+       std::string new_name = "";
+       std::string new_user = "";
+
+       std::cout << "Edit User\n";
+       std::cout << "What do you wish to edit?\n\n";
+       std::cout << "1. Name\n2. Username\n3. Password\n4. Exit";
+       std::cout << "\n Name: " << name;
+       std::cout << "\n Enter a new name: ";
+       std::cin >> new_name;
        setName(new_name);
-       cout << "\n Updated new name: " << name;
-       cout << "\n Username: "<< username;
-       cin >> new_user;
+       std::cout << "\n Updated new name: " << name;
+       std::cout << "\n Username: "<< username;
+       std::cin >> new_user;
        setUsername(new_user);
-       cout << "\n Updated new username: " << username;
+       std::cout << "\n Updated new username: " << username;
    }
    
    void addItemToCart(std::string i) {
@@ -133,12 +142,12 @@ public:
    }
 
    void checkout() {
-       booksCheckedOut.splice(cart.end(), cart) // I think this will transfer all items from cart into booksCheckedOut
+       booksCheckedOut.splice(cart.end(), cart); // I think this will transfer all items from cart into booksCheckedOut
    }
 
    std::string searchInventory() {
-
+       
    }
 
 
-}
+};
