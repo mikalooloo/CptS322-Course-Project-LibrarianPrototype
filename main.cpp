@@ -9,7 +9,8 @@ int main(void)
 	do 
 	{
 		std::cout << "Library Assistant Main Menu" << std::endl;
-		std::cout << "Please pick an option below" << std::endl;
+		std::cout << "Please pick an option below!" << std::endl;
+		std::cout << "\n1. View Books\n2. Check Out\n3. Check In\n4. Check Balance\n5. Account\n6. Exit\n\n";
 		std::cin >> choice;
 
 		switch (choice) {
