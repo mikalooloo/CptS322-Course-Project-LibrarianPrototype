@@ -6,7 +6,7 @@ OBJ = main.cpp classes.cpp functions.cpp
 %.o: %.c $(DEPS)
 	$(CC) -c -o $@ $< $(CFLAGS)
 	
-pa3: $(OBJ)
+library: $(OBJ)
 	$(CC) -o $@ $^ $(CFLAGS)
 	
 clean:
