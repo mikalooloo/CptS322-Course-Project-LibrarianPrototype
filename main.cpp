@@ -1,9 +1,11 @@
 //main.cpp for Library
 #include <iostream>
+#include "classes.hpp"
 
 int main(void)
 {
 	int choice;
+	User currentUser();
 	
 	do 
 	{
@@ -25,7 +27,7 @@ int main(void)
 				// Check Balance
 				break;
 			case 5:
-				// Edit User
+				// Register/Edit User
 				break;
 			case 6:
 				//Exit
