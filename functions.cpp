@@ -1,4 +1,5 @@
 #include "classes.hpp"
+// I'm not sure where this code is going exactly so I only touched this to fix conflict errors, -Mikaela
 
 //Admin functions
 void getUser();
