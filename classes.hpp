@@ -120,6 +120,9 @@ public:
     std::list<std::string> * getCart(void) {
         return &cart;
     }
+    float getFeesDue(void) {
+        return feesDue;
+    }
 
     // Functions
    void editUser() { 
@@ -128,48 +131,48 @@ public:
        std::string confirm_identity = "";
 
        do {
-            std::cout << "Edit User\n";
+            std::cout << std::endl << "Edit User\n";
             std::cout << "What do you wish to edit?\n\n";
-            std::cout << "1. Name\n2. Username\n3. Password\n4. Return to Main Menu";
+            std::cout << "1. Name\n2. Username\n3. Password\n4. Return to Main Menu" << std::endl << std::endl;
             std::cin >> choice;
 
             switch (choice) {
                 case 1: // Change Name
                     std::cout << std::endl << "Changing Name" << std::endl;
                     if (confirmIdentity()) {
-                        std::cout << "Current Name: " << name;
-                        std::cout << "\n Enter a new name: ";
+                        std::cout << "\nIdentity confirmed. Current Name: " << name;
+                        std::cout << "\nEnter a new name: ";
                         std::cin >> new_name;
                         setName(new_name);
-                        std::cout << "\n Updated new name: " << name;
+                        std::cout << "\nUpdated new name: " << name << std::endl;
                     }
                     else {
-                        std::cout << "\n Identity not confirmed. Please try again later." << std::endl;
+                        std::cout << "\nIdentity not confirmed. Please try again later." << std::endl << std::endl;
                     }
                     break;
                 case 2: // Change Username
                     std::cout << std::endl << "Changing Username" << std::endl;
                     if (confirmIdentity()) {
-                        std::cout << "\n Identity confirmed. Current Username: " << username;
-                        std::cout << "\n Enter a new username: ";
+                        std::cout << "\nIdentity confirmed. Current Username: " << username;
+                        std::cout << "\nEnter a new username: ";
                         std::cin >> new_name;
                         setUsername(new_name);
-                        std::cout << "\n Updated new username: " << username;
+                        std::cout << "\nUpdated new username: " << username << std::endl;
                     }
                     else {
-                        std::cout << "\n Identity not confirmed. Please try again later." << std::endl;
+                        std::cout << "\nIdentity not confirmed. Please try again later." << std::endl << std::endl;
                     }
                     break;
                 case 3: // Change Password
                     std::cout << std::endl << "Changing Password" << std::endl;
                     if (confirmIdentity()) {
-                        std::cout << "\n Identity confirmed. Enter a new password: ";
+                        std::cout << "\nIdentity confirmed. Enter a new password: ";
                         std::cin >> new_name;
                         setPassword(new_name);
-                        std::cout << "\n You have successfully updated your password." << std::endl;
+                        std::cout << "\nYou have successfully updated your password." << std::endl;
                     }
                     else {
-                        std::cout << "\n Identity not confirmed. Please try again later." << std::endl;
+                        std::cout << "\nIdentity not confirmed. Please try again later." << std::endl << std::endl;
                     }
                     break;
                 case 4: // Return to Main Menu
