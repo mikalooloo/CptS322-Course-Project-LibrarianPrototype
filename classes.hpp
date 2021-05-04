@@ -83,7 +83,7 @@ public:
 
     // Setters
     // for this I added the other fields because to me it wouldn't make sense if someone was registered unless they had those fields, feel free to change tho however
-    void setRegister(std::string n, std::string u, std::string p) {
+    void setRegister(std::string n = "", std::string u = "", std::string p = "") {
         isRegistered = true;
         name = n;
         username = u;
@@ -98,7 +98,7 @@ public:
     void setPassword(std::string p) {
         password = p;
     }
-    void setFees(float f) {
+    void setFeesDue(float f) {
         feesDue = f;
     }
     // Getters
