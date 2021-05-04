@@ -1,11 +1,17 @@
 //main.cpp for Library
 #include "classes.hpp"
+#include "functions.hpp"
 
 int main(void)
 {
 	int choice;
 	User currentUser;
+	
 	std::string name; std::string username; std::string password;
+
+	std::list<User> usersList;
+	readUsers(openFile("users.csv"),&usersList);
+	std::list<User>::iterator v;
 	
 	do 
 	{
@@ -38,18 +44,43 @@ int main(void)
 				break;
 			case 5:
 				// Register/Edit User
-				if (!currentUser.getRegistered()) // user is not registered
+				if (!currentUser.getRegistered()) // user is not logged in
 				{
-					// register user
-					std::cout << std::endl << "Registering User" << std::endl;
-					std::cout << "Enter your name: ";
-					std::cin >> name;
-					std::cout << std::endl << "Enter a username: ";
-					std::cin >> username;
-					std::cout << std::endl << "Enter a password: ";
-					std::cin >> password;
-					currentUser.setRegister(name,username,password);
-					std::cout << std::endl << name << ", you are successfully registered!" << std::endl;
+					do 
+					{
+						std::cout << std::endl << "Account" << std::endl << "Would you like to \n1. Make An Account\n2. Log In\n3. Return to Main Menu" << std::endl << std::endl;
+						std::cin >> choice;
+
+						if (choice == 1) { // register user
+							std::cout << std::endl << "Make An Account" << std::endl;
+							std::cout << "Enter your name: ";
+							std::cin >> name;
+							std::cout << std::endl << "Enter a username: ";
+							std::cin >> username;
+							std::cout << std::endl << "Enter a password: ";
+							std::cin >> password;
+							currentUser.setRegister(name,username,password);
+							usersList.push_back(currentUser);
+							std::cout << std::endl << name << ", you are successfully registered!" << std::endl;
+							choice = 3; // to force back to Main Menu
+						}
+						else if (choice == 2) { // log in
+							std::cout << std::endl << "Log In" << std::endl;
+							std::cout << "Username: ";
+							std::cin >> username;
+							std::cout << "Password: ";
+							std::cin >> password;
+							if (!(findUser(&usersList,v,username,password))) {
+								std::cout << std::endl << "User not found. Log in failed." << std::endl;
+							}
+							else {
+								std::cout << v->getName() << std::endl;
+								currentUser = *v;
+								std::cout << std::endl << "User found. Log in successful. Welcome " << currentUser.getName() << "!" << std::endl;
+							}
+						}
+					} while (choice != 3);
+					choice = 5;
 				}
 				else
 				{
@@ -59,6 +90,7 @@ int main(void)
 				break;
 			case 6:
 				// Leave Session
+				writeUsers(openFile("users.csv"),&usersList);
 				break;
 			default:
 				std::cout << std::endl << choice << " is not a valid input. Please try again!" << std::endl << std::endl;
