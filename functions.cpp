@@ -25,7 +25,7 @@ void readUsers(std::fstream file, std::list<User> * usersList) {
             tempUser.setUsername(readline);
             std::getline(file,readline,',');
             tempUser.setPassword(readline);
-            std::getline(file,readline,',');
+            std::getline(file,readline,'\n');
             tempUser.setFeesDue(stof(readline));
             usersList->push_back(tempUser);
         }
