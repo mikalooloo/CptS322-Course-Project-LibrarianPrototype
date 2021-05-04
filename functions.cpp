@@ -13,6 +13,7 @@ std::fstream openFile(std::string filename) {
     return file;
 }
 
+// reads all lines in users.csv into usersList
 void readUsers(std::fstream file, std::list<User> * usersList) {
     std::string readline = "";
     User tempUser; tempUser.setRegister();
@@ -33,6 +34,7 @@ void readUsers(std::fstream file, std::list<User> * usersList) {
     file.close();
 }
 
+// writes all current users in the list to users.csv
 void writeUsers(std::fstream file, std::list<User> * usersList) {
     for(std::list<User>::iterator v = usersList->begin(); v != usersList->end(); ++v) {
         file << v->getName();
@@ -48,6 +50,7 @@ void writeUsers(std::fstream file, std::list<User> * usersList) {
     file.close();
 }
 
+// returns true if user is found, false if not, and the iterator v is pointing to said user if true
 bool findUser(std::list<User> * usersList, std::list<User>::iterator & v, std::string username, std::string password) {
     for (v = usersList->begin(); v != usersList->end(); ++v) {
         if (v->getUsername() == username && v->getPassword() == password) return true;

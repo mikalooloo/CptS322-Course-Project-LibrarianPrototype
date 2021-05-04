@@ -4,15 +4,17 @@
 
 int main(void)
 {
+	// *******DECLARING VARIABLES*******
 	int choice;
 	User currentUser;
 	
 	std::string name; std::string username; std::string password;
 
-	std::list<User> usersList;
-	readUsers(openFile("users.csv"),&usersList);
-	std::list<User>::iterator v;
+	std::list<User> usersList; // list of all users
+	readUsers(openFile("users.csv"),&usersList); // reads in all users from users.csv
+	std::list<User>::iterator v; // iterator used for usersList
 	
+	// *******MAIN MENU*******
 	do 
 	{
 		std::cout << "Library Assistant Main Menu" << std::endl;
@@ -22,28 +24,28 @@ int main(void)
 
 		switch (choice) {
 			case 1:
-				// View Book Inventory
+				// ***View Book Inventory***
 				break;
 			case 2:
-				// Check Out Cart
+				// ***Check Out Cart***
 				break;
 			case 3:
-				// Check In Book(s)
+				// ***Check In Book(s)***
 				break;
 			case 4:
-				// Check Balance
+				// ***Check Balance***
 				if (!currentUser.getRegistered()) // user is not registered
 				{
 					std::cout << std::endl << "Please log in to your account before attempting to check your balance." << std::endl << std::endl;
 				}
-				else
+				else // user is registered
 				{
 					std::cout << std::endl << "Library Balance" << std::endl;
 					std::cout << "Fees Due: $" << currentUser.getFeesDue() << std::endl << std::endl;
 				}
 				break;
 			case 5:
-				// Register/Edit User
+				// ***Account***
 				if (!currentUser.getRegistered()) // user is not logged in
 				{
 					do 
@@ -77,20 +79,21 @@ int main(void)
 								std::cout << v->getName() << std::endl;
 								currentUser = *v;
 								std::cout << std::endl << "User found. Log in successful. Welcome " << currentUser.getName() << "!" << std::endl;
+								choice = 3; // to force back to Main Menu
 							}
 						}
 					} while (choice != 3);
 					choice = 5;
 				}
-				else
+				else // user is logged in
 				{
 					// edit user
 					currentUser.editUser();
 				}
 				break;
 			case 6:
-				// Leave Session
-				writeUsers(openFile("users.csv"),&usersList);
+				// ***Leave Session***
+				writeUsers(openFile("users.csv"),&usersList); // writes all current users to users.csv
 				break;
 			default:
 				std::cout << std::endl << choice << " is not a valid input. Please try again!" << std::endl << std::endl;
