@@ -1,6 +1,6 @@
 CC=g++
 CFLAGS=-g -Wall -std=c++11
-DEPS = classes.hpp
+DEPS = classes.hpp functions.hpp
 OBJ = main.cpp functions.cpp
 
 %.o: %.c $(DEPS)
