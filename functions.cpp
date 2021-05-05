@@ -303,10 +303,16 @@ std::string getName(std::string username){
             // [0] temp, [1] tempuser, [2] temppass...
             return row[0];
         }
-
     }
+    userfile.close();
 }
-void setName();
+
+// gets username as input, uses getName() to receive name associated
+// udpates the Name
+void setName(std::string username){
+    
+
+}
 void isRegistered();
 bool editUser();
 std::string searchInventory();

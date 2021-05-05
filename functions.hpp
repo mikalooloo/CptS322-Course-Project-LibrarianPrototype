@@ -5,6 +5,7 @@
 #include <sstream>
 #include <fstream>
 #include <iterator>
+#include <limits>
 
 std::fstream openFile(std::string filename);
 void readUsers(std::fstream file, std::list<User>* usersList);
