@@ -14,7 +14,7 @@ std::fstream openFile(std::string filename) {
 }
 
 // reads all lines in users.csv into usersList
-void readUsers(std::fstream file, std::list<User>* usersList) {
+void readUsers(std::fstream& file, std::list<User>* usersList) {
 	std::string readline = "";
 	User tempUser; tempUser.setRegister();
 
@@ -271,7 +271,13 @@ void storeBooks(std::list<Book>* bookList) {
 
 
 //Admin functions
-void getUser();
+
+//from milestone 3 - search user
+void getUser(){
+
+}
+
+//from milestone 3 - view book inventory
 void getBooks();
 
 //User functions
@@ -339,8 +345,8 @@ void isRegistered(std::list<User>* usersList, std::list<User>::iterator& v, std:
         std::cout << "User exists in the database. Name:" << v->getName() << "Username: "<< v->getUsername() << "and the state of their registration: " << v->getRegistered();
     }
     userfile.close();
-
 }
+
 bool editUser();
 std::string searchInventory();
 void addItemToCart();

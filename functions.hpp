@@ -9,7 +9,7 @@
 
 
 std::fstream openFile(std::string filename);
-void readUsers(std::fstream file, std::list<User>* usersList);
+void readUsers(std::fstream& file, std::list<User>* usersList);
 bool findUser(std::list<User>* usersList, std::list<User>::iterator& v, std::string username, std::string password);
 void writeUsers(std::fstream file, std::list<User>* usersList);
 void readBooks(std::fstream file, std::list<Book>* booksList);
