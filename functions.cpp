@@ -295,7 +295,7 @@ std::string getName(std::string username){
         std::stringstream strstrm(line);
 
         //reading column data of a row and storing in word
-        while (std::getline(strstrm, word, ",")){
+        while (std::getline(strstrm, word, ',')){
             // adding column to the string vector
             row.push_back(word);
         }
