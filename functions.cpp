@@ -275,7 +275,37 @@ void getUser();
 void getBooks();
 
 //User functions
-std::string getName();
+
+// takes username as input
+// returns the Name associated with the username
+std::string getName(std::string username){
+    // opening the user csv file
+    std::fstream userfile = openFile("users.csv");
+    if(!userfile.is_open()) throw std::runtime_error("Could not open users.csv");
+    
+    std::string line, word;
+
+    // reading data from csv as a string vector
+    std::vector<std::string> row;
+    
+    if(userfile.good()){
+        // reading rows
+        std::getline(userfile, line);
+        // so we can break it into pieces, see cppreference for stringstream
+        std::stringstream strstrm(line);
+
+        //reading column data of a row and storing in word
+        while (std::getline(strstrm, word, ",")){
+            // adding column to the string vector
+            row.push_back(word);
+        }
+        if (row[1] == username){
+            // [0] temp, [1] tempuser, [2] temppass...
+            return row[0];
+        }
+
+    }
+}
 void setName();
 void isRegistered();
 bool editUser();

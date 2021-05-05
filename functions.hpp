@@ -1,6 +1,8 @@
 #pragma once
 
 #include "classes.hpp"
+#include <vector>
+#include <sstream>
 #include <fstream>
 #include <iterator>
 
