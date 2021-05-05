@@ -281,11 +281,12 @@ void getBooks();
 std::string getName(std::list<User>* usersList, std::string username, std::string password,std::list<User>::iterator& v){
     // opening the user csv file
     std::fstream userfile = openFile("users.csv");
-    if(!userfile.is_open()) throw std::runtime_error("Could not open users.csv");
 
     // usersList updated with lines from users.csv
     readUsers(userfile, usersList);
 
+    // usersList is everyone in the csv
+    // v is one person
     if (findUser(usersList, v, username, password)){
         // v is now pointing at the user's information
         return v.front();
@@ -295,21 +296,25 @@ std::string getName(std::list<User>* usersList, std::string username, std::strin
 
 // gets username as input, uses getName() to receive name associated
 // udpates the Name
-void setName(std::string username){
+void setName(std::list<User>* usersList, std::string username, std::string password,std::list<User>::iterator& v){
     std::fstream userfile = openFile("users.csv");
-    if(!userfile.is_open()) throw std::runtime_error("Could not open users.csv");
+    readUsers(userfile, usersList);
     std::fstream newFile;
-    // creating a new csv file to update with the new name
-    newFile.open("newusers.csv");
+    std::string newname, oldname;
+    oldname = getName(usersList, username, password, v);
 
-    std::string line, word, name;
-    std::vector<std::string> row;
-    name = getName(username)
+    std::cout << "Current name associated with the username is:" << oldname;
+    std::cout << "Please enter a new name: ";
+    std::cin >> newname;
 
-    std::cout << "The name associated with your username is: " << 
-    
-
+    for (v = usersList->begin(); v != usersList->end(); ++v){
+        if (v->getUsername() == username && v->getPassword() == password){
+            std::replace(v.begin(), v.end(), oldname, newname);
+        }
+    }
 }
+
+
 void isRegistered();
 bool editUser();
 std::string searchInventory();

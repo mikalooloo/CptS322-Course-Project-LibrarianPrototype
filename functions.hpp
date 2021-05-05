@@ -6,7 +6,6 @@
 #include <fstream>
 #include <iterator>
 #include <limits>
-#include <bits/stdc++.h>
 
 
 std::fstream openFile(std::string filename);
