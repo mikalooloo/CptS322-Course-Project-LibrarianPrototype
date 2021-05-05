@@ -289,7 +289,7 @@ std::string getName(std::list<User>* usersList, std::string username, std::strin
     // v is one person
     if (findUser(usersList, v, username, password)){
         // v is now pointing at the user's information
-        return v.front();
+        return v->getName();
     }
     userfile.close();
 }
@@ -311,7 +311,7 @@ void setName(std::list<User>* usersList, std::string username, std::string passw
     for (v = usersList->begin(); v != usersList->end(); ++v){
         if (v->getUsername() == username && v->getPassword() == password){
             // replacing name in list<user> v
-            std::replace(v.begin(), v.end(), oldname, newname);
+            v->setName(newname);
         }
     }
 
@@ -324,8 +324,23 @@ void setName(std::list<User>* usersList, std::string username, std::string passw
     rename("usersnew.csv", "users.csv");
 }
 
+// returns a print statement with name and username confirming the user is in the users csv
+void isRegistered(std::list<User>* usersList, std::list<User>::iterator& v, std::string username, std::string password){
+    // opening the user csv file
+    std::fstream userfile = openFile("users.csv");
 
-void isRegistered();
+    // usersList updated with lines from users.csv
+    readUsers(userfile, usersList);
+
+    // usersList is everyone in the csv
+    // v is one person
+    if (findUser(usersList, v, username, password)){
+        // v is now pointing at the user's information
+        std::cout << "User exists in the database. Name:" << v->getName() << "Username: "<< v->getUsername() << "and the state of their registration: " << v->getRegistered();
+    }
+    userfile.close();
+
+}
 bool editUser();
 std::string searchInventory();
 void addItemToCart();
