@@ -278,31 +278,17 @@ void getBooks();
 
 // takes username as input
 // returns the Name associated with the username
-std::string getName(std::string username){
+std::string getName(std::list<User>* usersList, std::string username, std::string password,std::list<User>::iterator& v){
     // opening the user csv file
     std::fstream userfile = openFile("users.csv");
     if(!userfile.is_open()) throw std::runtime_error("Could not open users.csv");
-    
-    std::string line, word;
 
-    // reading data from csv as a string vector
-    std::vector<std::string> row;
-    
-    if(userfile.good()){
-        // reading rows
-        std::getline(userfile, line);
-        // so we can break it into pieces, see cppreference for stringstream
-        std::stringstream strstrm(line);
+    // usersList updated with lines from users.csv
+    readUsers(userfile, usersList);
 
-        //reading column data of a row and storing in word
-        while (std::getline(strstrm, word, ',')){
-            // adding column to the string vector
-            row.push_back(word);
-        }
-        if (row[1] == username){
-            // [0] temp, [1] tempuser, [2] temppass...
-            return row[0];
-        }
+    if (findUser(usersList, v, username, password)){
+        // v is now pointing at the user's information
+        return v.front();
     }
     userfile.close();
 }
@@ -310,6 +296,17 @@ std::string getName(std::string username){
 // gets username as input, uses getName() to receive name associated
 // udpates the Name
 void setName(std::string username){
+    std::fstream userfile = openFile("users.csv");
+    if(!userfile.is_open()) throw std::runtime_error("Could not open users.csv");
+    std::fstream newFile;
+    // creating a new csv file to update with the new name
+    newFile.open("newusers.csv");
+
+    std::string line, word, name;
+    std::vector<std::string> row;
+    name = getName(username)
+
+    std::cout << "The name associated with your username is: " << 
     
 
 }
