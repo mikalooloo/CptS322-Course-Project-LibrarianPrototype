@@ -300,6 +300,7 @@ void setName(std::list<User>* usersList, std::string username, std::string passw
     std::fstream userfile = openFile("users.csv");
     readUsers(userfile, usersList);
     std::fstream newFile;
+    newFile.open("usersnew.csv");
     std::string newname, oldname;
     oldname = getName(usersList, username, password, v);
 
@@ -309,9 +310,18 @@ void setName(std::list<User>* usersList, std::string username, std::string passw
 
     for (v = usersList->begin(); v != usersList->end(); ++v){
         if (v->getUsername() == username && v->getPassword() == password){
+            // replacing name in list<user> v
             std::replace(v.begin(), v.end(), oldname, newname);
         }
     }
+
+    writeUsers(newFile, usersList);
+    userfile.close();
+    newFile.close();
+    // removing old csv
+    remove("users.csv");
+    // renaming the updated file with the existing file name
+    rename("usersnew.csv", "users.csv");
 }
 
 
