@@ -294,7 +294,20 @@ void getBooks(std::list<Book>* bookList, std::list<Book>* cart){
     }// if opt = 2
 
     if (opt == 3){
-        deleteBooks(bookList);
+        std::fstream newFile;
+        std::string deletebook;
+        newFile.open("booksnew.csv");
+        std::cout << "\nEnter the title of the book you want to delete: ";
+	    std::getline(std::cin, deletebook);
+        if(it->getName() == deletebook){
+            for (it = bookList->begin(); it != bookList->end(); it++){
+                bookList->erase(it);
+            }
+        }
+        books.close();
+        newFile.close();
+        remove("bookscsv.csv");
+        rename("booksnew.csv", "users.csv");
     }
 
     if(opt == 4){
