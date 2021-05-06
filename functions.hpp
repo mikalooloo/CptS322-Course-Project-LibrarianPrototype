@@ -18,6 +18,7 @@ void bookActions(std::list<Book>* bookList, std::list<Book>* cart);
 void searchBooks(std::list<Book>* bookList, std::list<Book>* cart);
 void selectBook(std::list<Book>* bookList, std::list<Book>* cart);
 void checkOutCart(std::list<Book>* cart, std::list<Book>* bookList);
+void checkInBooks(std::list<Book>* booklist);
 void deleteBooks(std::list<Book>* cart);
 void storeBooks(std::list<Book>* bookList);
 void getBooks(std::list<Book>* bookList);
