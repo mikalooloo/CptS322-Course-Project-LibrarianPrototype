@@ -276,13 +276,12 @@ void storeBooks(std::list<Book>* bookList) {
 void getBooks(std::list<Book>* bookList, std::list<Book>* cart){
     std::fstream books = openFile("books.csv");
     readBooks(books, bookList);
-	std::list<Book>::iterator it;
-    std::list<Book> tempList;
-    int opt = 0, searchbook = 0;
-    char editans;
+    int opt = 0;
+    std::list<Book>::iterator it;
+    std::string newtitle;
 
-    while (opt < 1 || opt > 3){
-        std::cout <<"\n Would you like to see the (1) entire book database, (2) search books, (3) delete book.";
+    while (opt < 1 || opt > 4){
+        std::cout <<"\n Would you like to see the (1) entire book database, (2) search books, (3) delete book, or (4) edit book.";
         std::cin >> opt;
     }
 
@@ -296,6 +295,25 @@ void getBooks(std::list<Book>* bookList, std::list<Book>* cart){
 
     if (opt == 3){
         deleteBooks(bookList);
+    }
+
+    if(opt == 4){
+        std::fstream newFile;
+        std::string editbook;
+        newFile.open("booksnew.csv");
+        std::cout << "\nEnter the title of the book you want to edit: ";
+	    std::getline(std::cin, editbook);
+        if(it->getName() == editbook){
+            std::cout << "\nPlease enter a new title: ";
+            std::cin >> newtitle;
+            for (it = bookList->begin(); it != bookList->end(); it++){
+                it->setName(newtitle);
+            }
+        }
+        books.close();
+        newFile.close();
+        remove("bookscsv.csv");
+        rename("booksnew.csv", "users.csv");
     }
 }
 
