@@ -280,8 +280,8 @@ void getBooks(std::list<Book>* bookList, std::list<Book>* cart){
     std::list<Book>::iterator it;
     std::string newtitle;
 
-    while (opt < 1 || opt > 4){
-        std::cout <<"\n Would you like to see the (1) entire book database, (2) search books, (3) delete book, or (4) edit book.";
+    while (opt < 1 || opt > 3){
+        std::cout <<"\n Would you like to see the (1) entire book database, (2) delete book, or (3) edit book.";
         std::cin >> opt;
     }
 
@@ -290,10 +290,6 @@ void getBooks(std::list<Book>* bookList, std::list<Book>* cart){
     }
 
     if (opt == 2){
-        searchBooks(bookList, cart);
-    }// if opt = 2
-
-    if (opt == 3){
         std::fstream newFile;
         std::string deletebook;
         newFile.open("booksnew.csv");
@@ -310,7 +306,7 @@ void getBooks(std::list<Book>* bookList, std::list<Book>* cart){
         rename("booksnew.csv", "users.csv");
     }
 
-    if(opt == 4){
+    if(opt == 3){
         std::fstream newFile;
         std::string editbook;
         newFile.open("booksnew.csv");
@@ -396,7 +392,7 @@ void isRegistered(std::list<User>* usersList, std::list<User>::iterator& v, std:
     // v is one person
     if (findUser(usersList, v, username, password)){
         // v is now pointing at the user's information
-        std::cout << "User exists in the database. Name:" << v->getName() << "Username: "<< v->getUsername() << "and the state of their registration: " << v->getRegistered();
+        std::cout << "User exists in the database. Name:" << v->getName() << "Username: "<< v->getUsername();
     }
     userfile.close();
 }
