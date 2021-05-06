@@ -234,6 +234,31 @@ void checkOutCart(std::list<Book>* cart, std::list<Book>* bookList) {
 	}
 }
 
+
+void checkInBooks(std::list<Book>* booklist) {
+	int choice = 0;
+	while (choice < 1 || choice > 2) {
+		std::cout << "Would you like to check in books (1) yes (2) no?";
+		std::cin >> choice;
+	}
+
+	int ISBNno = 0;
+	if (choice == 1) {
+		std::cout << "Please enter the ISBN of the book you want to check in";
+		std::cin >> ISBNno;
+
+		//set checked out to false
+		//add book back to booklist
+
+
+	}
+	else {//send you back to main menu
+		return;
+	}
+}
+
+
+
 void deleteBooks(std::list<Book>* cart) {
 	int choice = 0;
 	std::list<Book>::iterator itc;
