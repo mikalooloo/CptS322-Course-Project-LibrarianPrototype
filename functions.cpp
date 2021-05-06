@@ -379,6 +379,7 @@ void getUser(std::list<User>* usersList){
         rename("usersnew.csv", "users.csv");
     }
 }
+}
 //User functions
 
 // takes username as input
@@ -400,7 +401,7 @@ std::string getName(std::list<User>* usersList, std::string username, std::strin
 }
 
 // gets username as input, uses getName() to receive name associated
-// udpates the Name
+// updates the Name
 void setName(std::list<User>* usersList, std::string username, std::string password,std::list<User>::iterator& v){
     std::fstream userfile = openFile("users.csv");
     readUsers(userfile, usersList);

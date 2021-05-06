@@ -20,3 +20,8 @@ void selectBook(std::list<Book>* bookList, std::list<Book>* cart);
 void checkOutCart(std::list<Book>* cart, std::list<Book>* bookList);
 void deleteBooks(std::list<Book>* cart);
 void storeBooks(std::list<Book>* bookList);
+void getBooks(std::list<Book>* bookList);
+void getUser(std::list<User>* usersList);
+std::string getName(std::list<User>* usersList, std::string username, std::string password,std::list<User>::iterator& v);
+void setName(std::list<User>* usersList, std::string username, std::string password,std::list<User>::iterator& v);
+void isRegistered(std::list<User>* usersList, std::list<User>::iterator& v, std::string username, std::string password);
