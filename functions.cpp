@@ -273,7 +273,7 @@ void storeBooks(std::list<Book>* bookList) {
 //Admin functions
 
 //from milestone 3 - view book inventory
-void getBooks(std::list<Book>* bookList, std::list<Book>* cart){
+void getBooks(std::list<Book>* bookList){
     std::fstream books = openFile("books.csv");
     readBooks(books, bookList);
     int opt = 0;
@@ -327,8 +327,57 @@ void getBooks(std::list<Book>* bookList, std::list<Book>* cart){
 }
 
 //from milestone 3 - search user
-void getUser(){
+void getUser(std::list<User>* usersList){
+    std::fstream users = openFile("users.csv");
+    readUsers(users, usersList);
+    int opt = 0;
+    std::list<User>::iterator it;
+    std::string newname;
 
+    while (opt < 1 || opt > 3){
+        std::cout <<"\n Would you like to see the (1) list of users, (2) delete a user, or (3) edit a user.";
+        std::cin >> opt;
+    }
+
+    if (opt == 1){
+        std::cout << "Book titles: \n";
+        for (it = usersList->begin(); it != usersList->end(); it++) {
+            std::cout << it->getName() << std::endl;
+    }
+
+    if (opt == 2){
+        std::fstream newFile;
+        std::string deleteuser;
+        newFile.open("usersnew.csv");
+        std::cout << "\nEnter the name of the user you want to delete: ";
+	    std::getline(std::cin, deleteuser);
+        if(it->getName() == deleteuser){
+            for (it = usersList->begin(); it != usersList->end(); it++){
+                usersList->erase(it);
+            }
+        }
+        users.close();
+        newFile.close();
+        remove("users.csv");
+        rename("usersnew.csv", "users.csv");
+    }
+
+    if(opt == 3){
+        std::fstream newFile;
+        std::string deleteuser;
+        newFile.open("usersnew.csv");
+        std::cout << "\nEnter the name of the user you want to delete: ";
+	    std::getline(std::cin, deleteuser);
+        if(it->getName() == deleteuser){
+            for (it = usersList->begin(); it != usersList->end(); it++){
+                it->setName(newname);
+            }
+        }
+        users.close();
+        newFile.close();
+        remove("users.csv");
+        rename("usersnew.csv", "users.csv");
+    }
 }
 //User functions
 
