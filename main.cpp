@@ -48,7 +48,13 @@ int main(void)
 			system("cls");
 			break;
 		case 3:
-			// ***Check In Book(s)***
+			system("cls");
+			if (currentUser.getRegistered() == true) {
+				checkInBooks(&bookList);
+			}
+			else {
+				std::cout << "Please log in or register before checking out.";
+			}
 			break;
 		case 4:
 			// ***Check Balance***
