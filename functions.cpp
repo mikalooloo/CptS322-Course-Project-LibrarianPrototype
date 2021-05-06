@@ -35,7 +35,7 @@ void readUsers (std::fstream& file, std::list<User>* usersList) {
 }
 
 // writes all current users in the list to users.csv
-void writeUsers(std::fstream file, std::list<User>* usersList) {
+void writeUsers(std::fstream& file, std::list<User>* usersList) {
 	for (std::list<User>::iterator v = usersList->begin(); v != usersList->end(); ++v) {
 		file << v->getName();
 		file << ",";
@@ -59,7 +59,7 @@ bool findUser(std::list<User>* usersList, std::list<User>::iterator& v, std::str
 	return false;
 }
 
-void readBooks(std::fstream file, std::list<Book>* bookList) {
+void readBooks(std::fstream& file, std::list<Book>* bookList) {
 	std::string readline = "";
 	std::string fname, lname, name, author, isbn;
 	bool co;
@@ -273,15 +273,16 @@ void storeBooks(std::list<Book>* bookList) {
 //Admin functions
 
 //from milestone 3 - view book inventory
-void getBooks(std::list<Book>* bookList){
+void getBooks(std::list<Book>* bookList, std::list<Book>* cart){
     std::fstream books = openFile("books.csv");
     readBooks(books, bookList);
 	std::list<Book>::iterator it;
+    std::list<Book> tempList;
     int opt = 0, searchbook = 0;
     char editans;
 
     while (opt < 1 || opt > 3){
-        std::cout <<"\n Would you like to see the (1) entire book database, (2) searh and edit books, (3) delete book.";
+        std::cout <<"\n Would you like to see the (1) entire book database, (2) search books, (3) delete book.";
         std::cin >> opt;
     }
 
@@ -290,67 +291,7 @@ void getBooks(std::list<Book>* bookList){
     }
 
     if (opt == 2){
-        // used Amanda's searchBook code for this 
-		std::cout << "\nWould you like to search for an (1) author, (2) title, or (3) ISBN?";
-		std::cin >> searchbook;
-        if (searchbook == 1) {
-            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-            std::string c;
-            std::cout << "\nPlease input the author: ";
-            std::getline(std::cin, c);
-            for (it = bookList->begin(); it != bookList->end(); it++) {
-                if (it->getAuthor() == c) {
-                    tempList.push_back((*it));
-                }
-            }
-            std::cout << "\n Would you like to edit this entry? [Y/N]: ";
-            std::cin << editans;
-            if (editans == "Y"){
-                std::string newauthor;
-                std::cout<<"\n Enter a new author: ";
-                std::cin << newauthor;
-                it->setAuthor(newauthor);
-            }
-        }
-        if (searchbook == 2) {
-            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-            std::string t;
-            std::cout << "\nPlease input the title: ";
-            std::getline(std::cin, t);
-            for (it = bookList->begin(); it != bookList->end(); it++) {
-                if (it->getName() == t) {
-                    tempList.push_back((*it));
-                }
-            }
-            std::cout << "\n Would you like to edit this entry? [Y/N]: ";
-            std::cin << editans;
-            if (editans == "Y"){
-                std::string newtitle;
-                std::cout<<"\n Enter a new title: ";
-                std::cin << newtitle;
-                it->setName(newtitle);
-            }
-        }
-        if (searchbook == 3) {
-            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-            std::string i;
-            std::cout << "\nPlease input the ISBN: ";
-            std::getline(std::cin, i);
-            for (it = bookList->begin(); it != bookList->end(); it++) {
-                if (it->getISBN() == i) {
-                    tempList.push_back((*it));
-                }
-            }
-            std::cout << "\n Would you like to edit this entry? [Y/N]: ";
-            std::cin << editans;
-            if (editans == "Y"){
-                int newISBN;
-                std::cout<<"\n Enter a new ISBN: ";
-                std::cin << newISBN;
-                std::to_string(newISBN);
-                it->setISBN(newISBN);
-            }
-        }
+        searchBooks(bookList, cart);
     }// if opt = 2
 
     if (opt == 3){
