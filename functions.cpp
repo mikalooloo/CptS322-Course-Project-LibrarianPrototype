@@ -409,17 +409,17 @@ void getUser(std::list<User>* usersList){
 
 // takes username as input
 // returns the Name associated with the username
-std::string getName(std::list<User>* usersList){
+// takes username as input
+// returns the Name associated with the username
+std::string getName(std::list<User>* usersList, std::string username, std::string password,std::list<User>::iterator& v){
     // opening the user csv file
     std::fstream userfile = openFile("users.csv");
-
-    // usersList updated with lines from users.csv
-    readUsers(userfile, usersList);
-
     // usersList is everyone in the csv
     // v is one person
-    return v->getName();
-
+    if (findUser(usersList, v, username, password)){
+        // v is now pointing at the user's information
+        return v->getName();
+    }
     userfile.close();
 }
 
